@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#181713">
+<title>Actions — Appalachian Vanguard</title>
+<meta name="description" content="What Appalachian Vanguard has been doing on the ground.">
+
+<meta property="og:title" content="Actions — Appalachian Vanguard">
+<meta property="og:description" content="What Appalachian Vanguard has been doing on the ground.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN/actions.html">
+<meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IM+Fell+English&family=Source+Serif+4:wght@400;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #181713;
+    --bg-alt: #221f1a;
+    --surface: #33523f;
+    --surface-hover: #3f6350;
+    --text: #ece4d2;
+    --text-muted: #b7c2b8;
+    --text-eyebrow: #7a9c68;
+    --accent: #8fc478;
+    --line: rgba(255,255,255,0.14);
+    --placeholder-bg: rgba(143,196,120,0.12);
+    --placeholder-border: #6f8f57;
+    --on-surface: #f2ead9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background-color: var(--bg); }
+  body {
+    margin: 0;
+    color: var(--text);
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 12px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    z-index: 100;
+    border-radius: 0 0 4px 0;
+  }
+  .skip-link:focus { left: 0; }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-eyebrow);
+  }
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--text);
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  .wordmark {
+    font-family: 'IM Fell English', serif;
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.015em;
+    color: var(--text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .wordmark:hover { color: var(--accent); }
+  .wordmark-tree {
+    width: 27px;
+    height: 27px;
+    display: block;
+    flex-shrink: 0;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  nav a { text-decoration: none; color: var(--text); white-space: nowrap; }
+  nav a:hover { color: var(--accent); }
+  nav a[aria-current="page"] { color: var(--accent); }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .nav-controls { display: flex; align-items: center; gap: 10px; }
+  .back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 30;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--on-surface);
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .back-to-top:hover { background: var(--surface-hover); }
+  @media (prefers-reduced-motion: reduce) { .back-to-top { transition: none; } }
+  @media (max-width: 640px) {
+    nav ul {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    nav ul.open { display: flex; }
+    nav a { display: block; padding: 18px 28px; border-top: 1px solid var(--line); }
+    .nav-toggle { display: inline-block; }
+    header { position: relative; }
+  }
+
+  /* ---------- Actions: intro (mirrors join-intro) ---------- */
+  .actions-intro {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 28px 12px;
+  }
+  .actions-intro h1 {
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.06;
+    margin-top: 14px;
+    max-width: 20ch;
+  }
+  .actions-heading-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .actions-heading-row h1 { margin-top: 0; }
+  .actions-star-ring {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--accent);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+  }
+  @media (max-width: 640px) {
+    .actions-star-ring { width: 52px; height: 52px; margin-top: 2px; }
+  }
+  .actions-intro .lede {
+    font-size: 19px;
+    color: var(--text-muted);
+    max-width: 54ch;
+    margin-top: 20px;
+  }
+
+  .contour-rule { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+  .contour-rule svg { width: 100%; height: 18px; display: block; }
+  .contour-rule path { fill: none; stroke: var(--text-eyebrow); stroke-width: 1; opacity: 0.4; }
+
+  /* ---------- Actions: media grid (mirrors book-grid/book-card) ---------- */
+  section.block {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 56px 28px 20px;
+  }
+  .block .eyebrow { margin-bottom: 10px; display: block; }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .action-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .action-media {
+    aspect-ratio: 4 / 3;
+    background: #100f0c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .action-media img,
+  .action-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .action-body { padding: 20px 22px 24px; }
+  .action-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-eyebrow);
+    margin: 0 0 8px;
+  }
+  .action-title {
+    font-size: 19px;
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+  .action-caption {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .action-placeholder {
+    text-align: center;
+    padding: 44px 26px;
+    margin-top: 10px;
+    background: var(--placeholder-bg);
+    border: 1px dashed var(--placeholder-border);
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    grid-column: 1 / -1;
+  }
+
+  /* ---------- CTA (mirrors index.html #contact) ---------- */
+  .quill-divider { display: flex; justify-content: center; margin-bottom: 22px; }
+  .contact-tree { width: 44px; height: 44px; display: block; }
+  .prose { max-width: 62ch; margin-top: 24px; }
+  .prose p { margin: 0 0 18px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .contact-box { margin-top: 28px; display: inline-flex; flex-direction: column; gap: 10px; }
+  .contact-email {
+    font-family: 'Space Mono', monospace;
+    font-size: 17px;
+    padding: 12px 18px;
+    background: var(--surface);
+    color: var(--on-surface);
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    width: fit-content;
+  }
+  .contact-email:hover { background: var(--surface-hover); }
+
+  footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--text-eyebrow);
+    letter-spacing: 0.04em;
+  }
+  .footer-privacy { margin-top: 14px; color: var(--text-eyebrow); opacity: 0.75; }
+  .verse-placeholder {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-left: 2px solid var(--text-eyebrow);
+    padding: 2px 0 2px 16px;
+    margin: 22px 0;
+  }
+  .verse-placeholder .verse-ref {
+    display: block;
+    font-style: normal;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-eyebrow);
+    margin-top: 6px;
+  }
+  .footer-verse { font-style: italic; border-left: none; padding-left: 0; margin: 14px 0 0; font-size: 12px; }
+  .footer-verse .verse-ref { margin-top: 4px; }
+  .footer-verse-row { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px; }
+  .footer-verse-row .footer-verse { margin: 0; }
+  .footer-verse-row .footer-tree { margin-top: 3px; }
+  .footer-tree { width: 13px; height: 13px; display: block; flex-shrink: 0; }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(120,110,90,0.55) 0px, rgba(120,110,90,0.55) 1px, transparent 1px, transparent 4px),
+      repeating-linear-gradient(0deg, rgba(120,110,90,0.4) 0px, rgba(120,110,90,0.4) 1px, transparent 1px, transparent 92px);
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<svg style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+  <defs>
+    <path id="star-shape" d="M0,-10 L2.25,-3.09 L9.51,-3.09 L3.63,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.63,1.18 L-9.51,-3.09 L-2.25,-3.09 Z" fill="currentColor"/>
+    <symbol id="emblem-stars-circle" viewBox="0 0 100 100">
+      <use href="#star-shape" transform="translate(50,18) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(64.86,21.66) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(76.35,31.83) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(81.77,46.14) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(79.92,61.35) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(71.20,73.97) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(57.57,81.09) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(42.43,81.09) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(28.80,73.97) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(20.08,61.35) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(18.23,46.14) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(23.65,31.83) scale(0.55)"/>
+      <use href="#star-shape" transform="translate(35.14,21.66) scale(0.55)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="nav-inner">
+    <a class="wordmark" href="index.html"><img src="assets/av-header-logo.png" alt="" class="wordmark-tree">Appalachian Vanguard</a>
+    <div class="nav-controls">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navList">Menu</button>
+      <nav>
+        <ul id="navList">
+          <li><a href="index.html#mission">Mission</a></li>
+          <li><a href="index.html#history">History &amp; Culture</a></li>
+          <li><a href="index.html#positions">Where We Stand</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="actions.html" aria-current="page">Actions</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="actions-intro">
+  <span class="eyebrow">On The Ground</span>
+  <div class="actions-heading-row">
+    <img class="actions-star-ring" src="assets/emblem-stars-tree.png" alt="" width="80" height="80">
+    <h1>What we've been doing</h1>
+  </div>
+  <p class="lede">Words are easy. This is the record of the work — cleanups, projects, and efforts carried out by people already in it.</p>
+</div>
+
+<div class="contour-rule">
+  <svg viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true"><path d="M0,9 L100,4 200,13 300,6 400,11 500,3 600,12 700,7 800,10 900,5 1000,9"/></svg>
+</div>
+
+<section class="block" id="actions">
+  <div class="action-grid" id="actionGrid">
+    <div class="action-placeholder" id="actionPlaceholder">
+      No actions posted yet — check back soon.
+    </div>
+  </div>
+</section>
+
+<div class="contour-rule">
+  <svg viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true"><path d="M0,9 L100,4 200,13 300,6 400,11 500,3 600,12 700,7 800,10 900,5 1000,9"/></svg>
+</div>
+
+<section class="block" id="contact">
+  <div class="quill-divider">
+    <img src="assets/tree-icon.png" alt="" class="contact-tree" loading="lazy">
+  </div>
+  <span class="eyebrow">Get Involved</span>
+  <h2>Like what you see?</h2>
+  <div class="prose">
+    <p>If this is the kind of work you want to be part of, head over to the join page to submit an application.</p>
+  </div>
+  <div class="contact-box">
+    <a class="contact-email" href="join.html">Submit an application &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-privacy">&copy; 2026 Appalachian Vanguard. All rights reserved.</div>
+  <div class="footer-verse-row">
+    <img src="assets/tree-icon.png" alt="" class="footer-tree" loading="lazy">
+    <div class="verse-placeholder footer-verse">
+      &#8220;He has made everything beautiful in its time.&#8221;
+      <span class="verse-ref">Ecclesiastes 3:11</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">&uarr;</button>
+
+<script src="actions.js"></script>
+<script>
+  var toggle = document.getElementById('navToggle');
+  var list = document.getElementById('navList');
+  function closeMobileNav() {
+    if (list.classList.contains('open')) {
+      list.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = 'Menu';
+    }
+  }
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = list.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.textContent = open ? 'Close' : 'Menu';
+  });
+  document.addEventListener('click', function (e) {
+    if (list.classList.contains('open') && !list.contains(e.target) && e.target !== toggle) {
+      closeMobileNav();
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMobileNav();
+  });
+
+  var backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 480) backToTop.classList.add('is-visible');
+    else backToTop.classList.remove('is-visible');
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  toggleBackToTop();
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Build the action cards from actions.js
+  (function () {
+    var grid = document.getElementById('actionGrid');
+    if (!grid || typeof actions === 'undefined' || !actions.length) return;
+    var placeholder = document.getElementById('actionPlaceholder');
+    if (placeholder) placeholder.remove();
+
+    var sorted = actions.slice().sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    sorted.forEach(function (a) {
+      var card = document.createElement('article');
+      card.className = 'action-card';
+
+      var media = document.createElement('div');
+      media.className = 'action-media';
+      if (a.mediaType === 'video') {
+        media.innerHTML = '<video src="' + a.mediaSrc + '" controls muted playsinline preload="metadata"></video>';
+      } else {
+        media.innerHTML = '<img src="' + a.mediaSrc + '" alt="' + a.title + '" loading="lazy">';
+      }
+
+      var body = document.createElement('div');
+      body.className = 'action-body';
+
+      var meta = document.createElement('p');
+      meta.className = 'action-meta';
+      meta.textContent = a.date + (a.location ? ' · ' + a.location : '');
+
+      var title = document.createElement('h3');
+      title.className = 'action-title';
+      title.textContent = a.title;
+
+      var caption = document.createElement('p');
+      caption.className = 'action-caption';
+      caption.textContent = a.caption;
+
+      body.appendChild(meta);
+      body.appendChild(title);
+      body.appendChild(caption);
+      card.appendChild(media);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  })();
+</script>
+
+<script data-goatcounter="https://appva.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
