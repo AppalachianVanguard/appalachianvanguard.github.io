@@ -12,20 +12,20 @@
 
 const actions = [
   {
-    title: "Placeholder: Cemetery Headstone Cleanup",
-    date: "2026-XX-XX",
-    location: "Southwest Virginia",
-    mediaType: "image",
-    mediaSrc: "assets/actions/placeholder-1.jpg",
-    caption: "One line on what happened and why it mattered."
+    title: "",
+    date: "",
+    location: "",
+    mediaType: "",
+    mediaSrc: "",
+    caption: ""
   },
   {
-    title: "Placeholder: Second Action",
-    date: "2026-XX-XX",
-    location: "Southwest Virginia",
-    mediaType: "video",
-    mediaSrc: "assets/actions/placeholder-2.mp4",
-    caption: "One line on what happened and why it mattered."
+    title: "",
+    date: "2",
+    location: "",
+    mediaType: "",
+    mediaSrc: "",
+    caption: ""
   },
   // Add more actions here as they happen.
 ];
