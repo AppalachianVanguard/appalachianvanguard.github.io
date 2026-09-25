@@ -33,8 +33,6 @@
     --text-eyebrow: #7a9c68;
     --accent: #8fc478;
     --line: rgba(255,255,255,0.14);
-    --placeholder-bg: rgba(143,196,120,0.12);
-    --placeholder-border: #6f8f57;
     --on-surface: #f2ead9;
   }
   * { box-sizing: border-box; }
@@ -209,92 +207,44 @@
     opacity: 0.85;
     margin-top: 8px !important;
   }
-  /* ---------- Blog post list ---------- */
-  .blog-post-list {
-    max-width: 68ch;
+  /* ---------- Substack callout ---------- */
+  .substack-callout {
+    max-width: 62ch;
     margin-top: 36px;
+    padding: 32px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 3px;
   }
-  details.blog-post {
-    border-top: 1px solid var(--line);
-    padding: 28px 0 8px;
-  }
-  details.blog-post:last-child {
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 32px;
-  }
-  details.blog-post summary {
-    cursor: pointer;
-    list-style: none;
-    display: block;
-  }
-  details.blog-post summary::-webkit-details-marker { display: none; }
-  .blog-post-date {
+  .substack-callout-label {
     display: block;
     font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-eyebrow);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
-  .blog-post-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 22px;
-    color: var(--text);
-    margin: 0 0 10px;
-    line-height: 1.25;
-  }
-  .blog-post-excerpt {
+  .substack-callout-text {
     color: var(--text-muted);
     font-size: 16px;
-    line-height: 1.55;
-    margin: 0 0 12px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+    max-width: 52ch;
   }
-  .blog-post-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 4px;
-  }
-  .blog-post-byline {
+  .substack-callout-link {
+    display: inline-block;
     font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.03em;
-    color: var(--text-eyebrow);
-  }
-  .blog-post-toggle {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.04em;
     color: var(--accent);
-    white-space: nowrap;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
   }
-  details.blog-post[open] .blog-post-toggle::after { content: " −"; }
-  details.blog-post:not([open]) .blog-post-toggle::after { content: " +"; }
-  .blog-post-body {
-    padding: 18px 0 12px;
-    color: var(--text-muted);
-    font-size: 16px;
-    max-width: 62ch;
-    border-top: 1px solid var(--line);
-    margin-top: 16px;
-  }
-  .blog-post-body p { margin: 0 0 16px; }
-  .blog-post-body p:last-child { margin-bottom: 0; }
-  .blog-placeholder {
-    text-align: center;
-    padding: 44px 26px;
-    margin-top: 10px;
-    max-width: 68ch;
-    background: var(--placeholder-bg);
-    border: 1px dashed var(--placeholder-border);
-    border-radius: 2px;
-    font-family: 'Space Mono', monospace;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--text-muted);
+  .substack-callout-link:hover {
+    color: var(--on-surface);
+    border-color: var(--on-surface);
   }
   footer {
     max-width: 980px;
@@ -415,10 +365,10 @@
     <p class="editorial-note">Individual opinion only — not official statements of the organization.</p>
   </div>
 
-  <div class="blog-post-list" id="blogPostList">
-    <div class="blog-placeholder" id="blogPlaceholder">
-      No posts yet — check back soon.
-    </div>
+  <div class="substack-callout">
+    <span class="substack-callout-label">Where we post now</span>
+    <p class="substack-callout-text">We write on Substack these days instead of hosting posts here directly. Subscribe there if you want new pieces sent straight to your inbox.</p>
+    <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read the blog on Substack &rarr;</a>
   </div>
 </section>
 </main>
@@ -433,7 +383,6 @@
   </div>
 </footer>
 <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">&uarr;</button>
-<script src="posts.js"></script>
 <script>
   var toggle = document.getElementById('navToggle');
   var list = document.getElementById('navList');
@@ -469,79 +418,6 @@
   backToTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  // Build the blog post list from posts.js
-  (function () {
-    var container = document.getElementById('blogPostList');
-    if (!container || typeof blogPosts === 'undefined' || !blogPosts.length) return;
-    var placeholder = document.getElementById('blogPlaceholder');
-    if (placeholder) placeholder.remove();
-
-    var sorted = blogPosts.slice().sort(function (a, b) {
-      return new Date(b.date) - new Date(a.date);
-    });
-
-    function makeExcerpt(text, maxLen) {
-      if (!text) return '';
-      var clean = text.replace(/\s+/g, ' ').trim();
-      if (clean.length <= maxLen) return clean;
-      var cut = clean.lastIndexOf(' ', maxLen);
-      if (cut < maxLen * 0.6) cut = maxLen;
-      return clean.slice(0, cut).trim() + '…';
-    }
-
-    sorted.forEach(function (post) {
-      var details = document.createElement('details');
-      details.className = 'blog-post';
-
-      var summary = document.createElement('summary');
-
-      var dateEl = document.createElement('span');
-      dateEl.className = 'blog-post-date';
-      dateEl.textContent = post.date || '';
-
-      var titleEl = document.createElement('h3');
-      titleEl.className = 'blog-post-title';
-      titleEl.textContent = post.title || 'Untitled';
-
-      var excerptEl = document.createElement('p');
-      excerptEl.className = 'blog-post-excerpt';
-      excerptEl.textContent = makeExcerpt(post.body || '', 230);
-
-      var meta = document.createElement('div');
-      meta.className = 'blog-post-meta';
-
-      var byline = document.createElement('span');
-      byline.className = 'blog-post-byline';
-      byline.textContent = post.author ? ('By ' + post.author) : '';
-
-      var toggleLabel = document.createElement('span');
-      toggleLabel.className = 'blog-post-toggle';
-      toggleLabel.textContent = 'Read full';
-
-      meta.appendChild(byline);
-      meta.appendChild(toggleLabel);
-
-      summary.appendChild(dateEl);
-      summary.appendChild(titleEl);
-      summary.appendChild(excerptEl);
-      summary.appendChild(meta);
-
-      var body = document.createElement('div');
-      body.className = 'blog-post-body';
-      (post.body || '').split(/\n\s*\n/).forEach(function (para) {
-        var trimmed = para.trim();
-        if (!trimmed) return;
-        var p = document.createElement('p');
-        p.textContent = trimmed;
-        body.appendChild(p);
-      });
-
-      details.appendChild(summary);
-      details.appendChild(body);
-      container.appendChild(details);
-    });
-  })();
 </script>
 <script data-goatcounter="https://appva.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
