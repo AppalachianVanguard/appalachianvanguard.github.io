@@ -216,6 +216,18 @@
     border: 1px solid var(--line);
     border-radius: 3px;
   }
+  .substack-callout-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .substack-callout-logo {
+    width: 26px;
+    height: 26px;
+    display: block;
+    flex-shrink: 0;
+  }
   .substack-callout-label {
     display: block;
     font-family: 'Space Mono', monospace;
@@ -223,7 +235,6 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-eyebrow);
-    margin-bottom: 12px;
   }
   .substack-callout-text {
     color: var(--text-muted);
@@ -366,7 +377,10 @@
   </div>
 
   <div class="substack-callout">
-    <span class="substack-callout-label">Where we post now</span>
+    <div class="substack-callout-header">
+      <img src="assets/av-logo-avatar-dark.png" alt="Appalachian Vanguard" class="substack-callout-logo" width="26" height="26" loading="lazy">
+      <span class="substack-callout-label">Where we post now</span>
+    </div>
     <p class="substack-callout-text">We write on Substack these days instead of hosting posts here directly. Subscribe there if you want new pieces sent straight to your inbox.</p>
     <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read the blog on Substack &rarr;</a>
   </div>
