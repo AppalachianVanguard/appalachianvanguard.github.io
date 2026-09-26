@@ -193,25 +193,25 @@
   section.block {
     max-width: 980px;
     margin: 0 auto;
-    padding: 64px 28px 80px;
+    padding: 48px 28px 72px;
   }
-  .block h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 6px; }
+  .block h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 0; }
   .block .eyebrow { margin-bottom: 10px; display: block; }
-  .prose { max-width: 62ch; margin-top: 20px; }
-  .prose p { margin: 0 0 14px; }
+  .prose { max-width: 62ch; margin-top: 18px; }
+  .prose p { margin: 0 0 12px; }
   .prose p:last-child { margin-bottom: 0; }
   .editorial-note {
     font-size: 13px;
     font-style: italic;
     color: var(--text-muted);
     opacity: 0.85;
-    margin-top: 8px !important;
+    margin-top: 6px !important;
   }
   /* ---------- Substack callout ---------- */
   .substack-callout {
     max-width: 62ch;
     margin-top: 36px;
-    padding: 32px;
+    padding: 28px 30px;
     background: var(--bg-alt);
     border: 1px solid var(--line);
     border-radius: 3px;
@@ -220,7 +220,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .substack-callout-logo {
     width: 26px;
@@ -240,7 +240,7 @@
     color: var(--text-muted);
     font-size: 16px;
     line-height: 1.6;
-    margin: 0 0 20px;
+    margin: 0 0 22px;
     max-width: 52ch;
   }
   .substack-callout-link {
@@ -248,26 +248,28 @@
     font-family: 'Space Mono', monospace;
     font-size: 13px;
     letter-spacing: 0.04em;
-    color: var(--accent);
+    color: var(--bg);
+    background: var(--accent);
     text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
+    padding: 10px 18px;
+    border-radius: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .substack-callout-link:hover {
-    color: var(--on-surface);
-    border-color: var(--on-surface);
+    background: var(--on-surface);
+    color: var(--bg);
   }
   footer {
     max-width: 980px;
     margin: 0 auto;
-    padding: 40px 28px 60px;
+    padding: 32px 28px 56px;
     font-family: 'Space Mono', monospace;
     font-size: 12px;
     color: var(--text-eyebrow);
     letter-spacing: 0.04em;
   }
   .footer-privacy {
-    margin-top: 14px;
+    margin-top: 0;
     color: var(--text-eyebrow);
     opacity: 0.75;
   }
@@ -316,15 +318,15 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 14px;
   }
   .heading-flag {
     display: block;
-    width: 42px;
+    width: 38px;
     height: auto;
     border-radius: 2px;
     border: 1px solid var(--line);
-    opacity: 0.92;
+    opacity: 0.9;
     flex-shrink: 0;
     align-self: center;
   }
@@ -369,20 +371,19 @@
   <span class="eyebrow">Blog</span>
   <div class="block-heading-row">
     <h2>Notes &amp; Commentary</h2>
-    <img src="assets/betsy-ross-flag.png" alt="Betsy Ross American flag" class="heading-flag" width="42" height="22" loading="lazy">
+    <img src="assets/betsy-ross-flag.png" alt="Betsy Ross American flag" class="heading-flag" width="38" height="20" loading="lazy">
   </div>
   <div class="prose">
     <p>Essays and commentary from Appalachian Vanguard contributors.</p>
     <p class="editorial-note">Individual opinion only — not official statements of the organization.</p>
   </div>
-
   <div class="substack-callout">
     <div class="substack-callout-header">
       <img src="assets/av-logo-avatar-dark.png" alt="Appalachian Vanguard" class="substack-callout-logo" width="26" height="26" loading="lazy">
-      <span class="substack-callout-label">Where we post now</span>
+      <span class="substack-callout-label">Primary home for new writing</span>
     </div>
-    <p class="substack-callout-text">We write on Substack these days instead of hosting posts here directly. Subscribe there if you want new pieces sent straight to your inbox.</p>
-    <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read the blog on Substack &rarr;</a>
+    <p class="substack-callout-text">New pieces appear on Substack. Subscribe there to receive them directly in your inbox as they are published.</p>
+    <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read &amp; subscribe on Substack &rarr;</a>
   </div>
 </section>
 </main>
@@ -421,7 +422,6 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMobileNav();
   });
-
   var backToTop = document.getElementById('backToTop');
   function toggleBackToTop() {
     if (window.scrollY > 480) backToTop.classList.add('is-visible');
