@@ -211,22 +211,10 @@
   .substack-callout {
     max-width: 62ch;
     margin-top: 36px;
-    padding: 28px 30px;
+    padding: 26px 28px;
     background: var(--bg-alt);
     border: 1px solid var(--line);
     border-radius: 3px;
-  }
-  .substack-callout-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .substack-callout-logo {
-    width: 26px;
-    height: 26px;
-    display: block;
-    flex-shrink: 0;
   }
   .substack-callout-label {
     display: block;
@@ -235,12 +223,13 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-eyebrow);
+    margin-bottom: 12px;
   }
   .substack-callout-text {
     color: var(--text-muted);
     font-size: 16px;
     line-height: 1.6;
-    margin: 0 0 22px;
+    margin: 0 0 18px;
     max-width: 52ch;
   }
   .substack-callout-link {
@@ -248,16 +237,14 @@
     font-family: 'Space Mono', monospace;
     font-size: 13px;
     letter-spacing: 0.04em;
-    color: var(--bg);
-    background: var(--accent);
+    color: var(--accent);
     text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 2px;
-    transition: background 0.15s ease, color 0.15s ease;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
   }
   .substack-callout-link:hover {
-    background: var(--on-surface);
-    color: var(--bg);
+    color: var(--on-surface);
+    border-color: var(--on-surface);
   }
   footer {
     max-width: 980px;
@@ -377,12 +364,9 @@
     <p class="editorial-note">Individual opinion only — not official statements of the organization.</p>
   </div>
   <div class="substack-callout">
-    <div class="substack-callout-header">
-      <img src="assets/av-logo-avatar-dark.png" alt="Appalachian Vanguard" class="substack-callout-logo" width="26" height="26" loading="lazy">
-      <span class="substack-callout-label">Primary home for new writing</span>
-    </div>
-    <p class="substack-callout-text">New pieces appear on Substack. Subscribe there to receive them directly in your inbox as they are published.</p>
-    <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read &amp; subscribe on Substack &rarr;</a>
+    <span class="substack-callout-label">New writing</span>
+    <p class="substack-callout-text">Recent essays and commentary appear on Substack. Subscribe there if you want them delivered to your inbox.</p>
+    <a class="substack-callout-link" href="https://appvan.substack.com/?r=95nm87&utm_campaign=pub-share-checklist" target="_blank" rel="noopener">Read on Substack &rarr;</a>
   </div>
 </section>
 </main>
